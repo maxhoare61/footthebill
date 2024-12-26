@@ -87,9 +87,12 @@
   
   .scroll__graphic.is-fixed {
     position: fixed;
+    top: 0;
+    z-index: 10;
   }
   
   .scroll__graphic.is-bottom {
+    position: absolute;
     bottom: 0;
     top: auto;
   }

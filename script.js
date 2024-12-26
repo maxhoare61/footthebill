@@ -48,7 +48,7 @@ function handleStepEnter(response) {
 
 function handleContainerEnter(response) {
   // response = { direction }
-
+  console.log("Container entered");
   // sticky the graphic (old school)
   graphic.classed("is-fixed", true);
   graphic.classed("is-bottom", false);
@@ -56,7 +56,8 @@ function handleContainerEnter(response) {
 
 function handleContainerExit(response) {
   // response = { direction }
-
+  console.log("Container exited", response.direction);
+  
   // un-sticky the graphic, and pin to top/bottom of container
   graphic.classed("is-fixed", false);
   graphic.classed("is-bottom", response.direction === "down");
