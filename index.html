@@ -33,6 +33,7 @@
     </header>
 
     <main>
+        <section class = "landing-hero">
         <section class="left">
             <h1>downstream <br> project</h1>
             <p>We use complex data to tell clear stories<br>
@@ -41,39 +42,50 @@
 
         <section class="right">
             <div class="node-map">
-                <svg width="500" height="500" id="node-map">
-                    <!-- Lines connecting the nodes -->
-                    <line id="line-story" stroke="black" stroke-dasharray="4" />
-                    <line id="line-about" stroke="black" stroke-dasharray="4" />
-                    <line id="line-project" stroke="black" stroke-dasharray="4" />
-                  
-                    <!-- Nodes -->
-                    <!-- Central Node -->
-                    <g class="node central">
-                      <circle cx="250" cy="250" r="40" fill="black" />
-                    </g>
-                  
-                    <!-- Stories Node -->
-                    <g class="node" id="story-node">
-                      <image href="assets/images/shapes/stories.png" x="125" y="75" width="50" height="50" />
-                      <text x="150" y="140" text-anchor="middle" font-size="14px" fill="black">Stories</text>
-                    </g>
-                  
-                    <!-- About Node -->
-                    <g class="node" id="about-node">
-                      <image href="assets/images/shapes/about.png" x="325" y="75" width="50" height="50" />
-                      <text x="350" y="140" text-anchor="middle" font-size="14px" fill="black">About</text>
-                    </g>
-                  
-                    <!-- Projects Node -->
-                    <g class="node" id="project-node">
-                      <image href="assets/images/shapes/projects.png" x="225" y="375" width="50" height="50" />
-                      <text x="250" y="450" text-anchor="middle" font-size="14px" fill="black">Projects</text>
-                    </g>
-                  </svg>
+                <canvas id="network" width="800" height="600"></canvas>
             </div>
         </section>
+    </section>
+    <section class="projects-overview">
+        <div class="projects-header">
+            <div class="projects-header-container">
+            <img src="assets/images/shapes/projects.png" alt="Projects Icon" class="projects-icon">
+            <h2>Projects</h2>
+        </div>
+        </div>
+        <div class="projects-list">
+            <div class="project-item">
+                <h3>Carbon Emissions in Perspective</h3>
+                <p>
+                    Explore the historical and global trends of carbon emissions, providing a comprehensive analysis of their impact on climate change and society.
+                </p>
+            </div>
+            <div class="project-item">
+                <h3>Political Donations Network</h3>
+                <p>
+                    Visualize the connections between political entities and their donors, uncovering patterns and insights into the flow of financial influence.
+                </p>
+            </div>
+            <div class="project-item">
+                <h3>Political Donations Network</h3>
+                <p>
+                    Visualize the connections between political entities and their donors, uncovering patterns and insights into the flow of financial influence.
+                </p>
+            </div>
+        </div>
+    </section>
     </main>
+    <footer class="site-footer">
+        <div class="logo-footer">
+            <img src="assets/images/logo.png" alt="Downstream Project Logo">
+            <span>downstream project</span>
+        </div>
+        <div class="footer-content">
+            <p>&copy; 2025 Downstream Project. XXXXXXXXXX.</p>
+            <p><a href="privacy.html">Sign up for our Newsletter</a> | <a href="terms.html">Buy our merch</a></p>
+        </div>
+    </footer>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 
