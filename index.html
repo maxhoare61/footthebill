@@ -4,57 +4,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrollytelling Project</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
-    <script src="https://unpkg.com/scrollama"></script>
+    <title>Downstream Project</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+    <div class="middle-line"></div>
+    <header>
+
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Downstream Project Logo">
+            <span>downstream project</span>
+        </div>
+        <nav class="menu-bar">
+            <a href="projects.html" class="menu-item">
+                <img class="menu-icon" src="assets/images/shapes/projects.png" alt="Projects Icon">
+                Projects
+            </a>
+            <a href="stories.html" class="menu-item">
+                <img class="menu-icon" src="assets/images/shapes/stories.png" alt="Stories Icon">
+                Stories
+            </a>
+            <a href="about.html" class="menu-item">
+                <img class="menu-icon" src="assets/images/shapes/about.png" alt="About Icon">
+                About
+            </a>
+        </nav>
+    </header>
+
     <main>
-        <section id="intro">
-            <nav class="menu-bar">
-                <img src="assets/images/logo.png" alt="Logo" class="logo">
-                <a href="#about-us" class="about-us-btn">About Us</a>
-            </nav>
-            <h1>How Does Your Footprint Weigh Up?</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <section class="left">
+            <h1>downstream <br> project</h1>
+            <p>We use complex data to tell clear stories<br>
+                Because public data should be <em>public-friendly</em></p>
         </section>
 
-        <section id="scrolly">
-            <article>
-                <div class="step" data-step="1">
-                    <p>STEP 1</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum.
-                    </p>
-                </div>
-                <div class="step" data-step="2">
-                    <p>STEP 2</p>
-                    <p>Curabitur pulvinar euismod ante, ac sagittis purus consequat ac. Fusce ultrices tristique nisl,
-                        at.</p>
-                </div>
-                <div class="step" data-step="3">
-                    <p>STEP 3</p>
-                    <p>Suspendisse potenti. Praesent ut ligula non mi varius sagittis. Pellentesque habitant morbi
-                        tristique.</p>
-                </div>
-                <div class="step" data-step="4">
-                    <p>STEP 4</p>
-                    <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac.
-                    </p>
-                </div>
-            </article>
-
-            <figure>
-                <p>1</p>
-            </figure>
+        <section class="right">
+            <div class="node-map">
+                <svg width="500" height="500" id="node-map">
+                    <!-- Lines connecting the nodes -->
+                    <line id="line-story" stroke="black" stroke-dasharray="4" />
+                    <line id="line-about" stroke="black" stroke-dasharray="4" />
+                    <line id="line-project" stroke="black" stroke-dasharray="4" />
+                  
+                    <!-- Nodes -->
+                    <!-- Central Node -->
+                    <g class="node central">
+                      <circle cx="250" cy="250" r="40" fill="black" />
+                    </g>
+                  
+                    <!-- Stories Node -->
+                    <g class="node" id="story-node">
+                      <image href="assets/images/shapes/stories.png" x="125" y="75" width="50" height="50" />
+                      <text x="150" y="140" text-anchor="middle" font-size="14px" fill="black">Stories</text>
+                    </g>
+                  
+                    <!-- About Node -->
+                    <g class="node" id="about-node">
+                      <image href="assets/images/shapes/about.png" x="325" y="75" width="50" height="50" />
+                      <text x="350" y="140" text-anchor="middle" font-size="14px" fill="black">About</text>
+                    </g>
+                  
+                    <!-- Projects Node -->
+                    <g class="node" id="project-node">
+                      <image href="assets/images/shapes/projects.png" x="225" y="375" width="50" height="50" />
+                      <text x="250" y="450" text-anchor="middle" font-size="14px" fill="black">Projects</text>
+                    </g>
+                  </svg>
+            </div>
         </section>
-
-        <section id="outro"></section>
     </main>
-
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
