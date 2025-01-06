@@ -5,17 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Downstream Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-    <div class="middle-line"></div>
     <header>
-
-        <div class="logo">
+        <a href="index.html" class="logo">
             <img src="assets/images/logo.png" alt="Downstream Project Logo">
             <span>downstream project</span>
-        </div>
+        </a>
         <nav class="menu-bar">
             <a href="projects.html" class="menu-item">
                 <img class="menu-icon" src="assets/images/shapes/projects.png" alt="Projects Icon">
@@ -33,48 +32,61 @@
     </header>
 
     <main>
-        <section class = "landing-hero">
-        <section class="left">
-            <h1>downstream <br> project</h1>
-            <p>We use complex data to tell clear stories<br>
-                Because public data should be <em>public-friendly</em></p>
-        </section>
+        <section class="landing-hero">
+            <section class="left">
+                <div class="animated-text-container">
+                <h1 id="animated-text">0000000000 <br> 0000000</h1>
+                </div>
+                <p>We use complex data to tell clear stories<br>
+                    Because public data should be <em>public-friendly</em></p>
+            </section>
 
-        <section class="right">
-            <div class="node-map">
-                <canvas id="network" width="800" height="600"></canvas>
-            </div>
+            <section class="right">
+                <div class="node-map">
+                    <canvas id="network" width="800" height="600"></canvas>
+                </div>
+            </section>
         </section>
-    </section>
-    <section class="projects-overview">
-        <div class="projects-header">
-            <div class="projects-header-container">
-            <img src="assets/images/shapes/projects.png" alt="Projects Icon" class="projects-icon">
-            <h2>Projects</h2>
-        </div>
-        </div>
-        <div class="projects-list">
-            <div class="project-item">
-                <h3>Carbon Emissions in Perspective</h3>
-                <p>
-                    Explore the historical and global trends of carbon emissions, providing a comprehensive analysis of their impact on climate change and society.
-                </p>
-            </div>
-            <div class="project-item">
-                <h3>Political Donations Network</h3>
-                <p>
-                    Visualize the connections between political entities and their donors, uncovering patterns and insights into the flow of financial influence.
-                </p>
-            </div>
-            <div class="project-item">
-                <h3>Political Donations Network</h3>
-                <p>
-                    Visualize the connections between political entities and their donors, uncovering patterns and insights into the flow of financial influence.
-                </p>
-            </div>
-        </div>
-    </section>
+        <section class="preamble-hero">
+            <section class="the-problem">
+                <section class="left-problem">
+                    <div class="problem-text-container">
+                        <h2>The Problem </h2>
+                        <p>Public data isn’t always publicly accessible. Key insights from government data are often
+                            <br>
+                            scattered across PDFs, spreadsheets, and fragmented databases. <br>
+                            While technically publicly available, understanding it requires expertise, and a <em>lot of
+                                time.</em>
+                        </p>
+                    </div>
+                </section>
+                <section class="right-problem"></section>
+            </section>
+            <section class="our-approach">
+                <section class="left-problem">
+                    <div class="problem-text-container">
+                        <h2>our Approach </h2>
+                        <p>At Downstream, we believe public data should be truly public. <br>
+                            We transform dense datasets into clear, interactive visuals and scrollable narratives. <br>
+                            We handle the data cleaning, analysis, and visualisations - you explore the insights.<br>
+                        </p>
+                    </div>
+                </section>
+                <section class="right-approach"></section>
+            </section>
+            <section class="current-projects">
+                    <div class="current-projects-text-container">
+                        <h2>Current Projects </h2>
+                        <p>We're starting small but focusing on what matters — making carbon <br> 
+                            emissions and political donation data accessible to everyone through <br> 
+                            interactive storytelling. These are the stories we care about, and we believe <br> 
+                            you should be able to understand them too.
+                        </p>
+                    </div>
+            </section>
+        </section>
     </main>
+
     <footer class="site-footer">
         <div class="logo-footer">
             <img src="assets/images/logo.png" alt="Downstream Project Logo">
