@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&family=Bitter:wght@400;700&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 :root {
   --green-accent: #26b790;
   --blue-accent: #4c95f6;
@@ -21,6 +25,7 @@ body {
   justify-content: center;
   background-color: var(--background-light-grey);
   line-height: 1.8;
+  width: 100vw;
 }
 
 h2 {
@@ -119,41 +124,48 @@ main {
   min-height: calc(100vh - 96px);
 }
 
+.hero-half {
+  flex: 1;
+}
+
+.hero-half:not(:last-child) {
+  border-right: 1px solid #000; /* Creates the border */
+}
+
 .left {
   flex: 1;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: left;
-  max-width: 43vw;
+  justify-content: center;
   line-height: 1;
   padding-left: 2%;
+  padding-bottom: 5%;
 }
 
-.left p {
-  height: 50%;
+p {
   font-size: 20px;
   line-height: 1.5;
-  margin: 0; /* Remove default margins */
-  padding: 0; /* Ensure no padding */
 }
 
 .animated-text-container {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items:baseline;
-  justify-content: left;
-  margin: 0; /* Remove default margins */
-  padding: 0; /* Ensure no padding */
-  height: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 7%; /* Remove default margins */
+  box-sizing: border-box;
+  min-height: 46%;
 }
 
 #animated-text {
   font-size: 5rem;
   display: inline-block; /* Prevent text shifting */
   height: 100%;
+  line-height: 1; /* Ensure consistent line height */
+  min-height: 6rem; /* Set a minimum height to prevent shifting */
 }
 
 .right {
@@ -161,9 +173,28 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-left: 1px solid #000;
   width: 100%; /* Make the container fill its parent */
   height: calc(100vh - 96px); /* Make the container fill its parent */
+}
+
+/* Overlay the paragraph text */
+.landing-hero .right p {
+  position: absolute;
+  top: 5%;
+  left: 61%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.7); /* Optional: Add a semi-transparent background */
+  padding: 10px; /* Optional: Add some padding */
+  text-align: center;
+  transition: opacity 1s ease; /* Smooth transition for hiding */
+}
+
+/* Initially show the paragraph */
+.landing-hero .right p.hidden {
+  opacity: 0;
+  pointer-events: none; /* Prevent interaction when hidden */
 }
 
 .node-map {
@@ -195,25 +226,7 @@ line {
   border-bottom: 1px solid #000;
 }
 
-.left-problem {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding-left: 4rem;
-  max-width: 50vw;
-  height: 70vh;
-}
-
-.right-problem {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-left: 1px solid #000;
-  background-color: rgba(33,183,144,0.5);
-}
+/* ----------------- OUR APPROACH ----------------- */
 
 .our-approach {
   position: relative;
@@ -222,15 +235,21 @@ line {
   border-bottom: 1px solid #000;
 }
 
-.right-approach {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-left: 1px solid #000;
-  background-color: rgba(255,132,0,0.5);
+.btn-1 {
+  background-color: white; 
+  border: 2px solid black; 
+  padding: 10px 20px; 
+  cursor: pointer;
+  text-decoration: 0;
+  color: black;
 }
+
+.btn-1:hover {
+  background-color: black; 
+  color: white;
+}
+
+/* ----------------- CURRENT PROJECTS ----------------- */
 
 .current-projects {
   position: relative;
@@ -239,7 +258,7 @@ line {
   align-items: center;
   justify-items: center;
   border-bottom: 1px solid #000;
-  min-height: 80vh;
+  min-height: 50vh;
 }
 
 .current-projects-text-container {
@@ -252,13 +271,15 @@ line {
   text-align: center;
 }
 
+/* ----------------- FOOTER ----------------- */
+
 .site-footer {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100vw;
+  width: 100%;
   background-color: #fff; /* White background */
   color: #333; /* Text color */
   text-align: center;

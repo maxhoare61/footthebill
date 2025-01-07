@@ -1,5 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;700&family=Bitter:wght@400;700&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --green-accent: #26b790;
+  --blue-accent: #4c95f6;
+  --orange-accent: #ff8200;
+  --dark-grey: #333;
+  --background-light-grey: #f5f5f5;
+  --font-family-body: 'Bitter', serif;
+  --font-family-header: 'Bai Jamjuree', sans-serif;
+  --font-size-base: 16px;
+}
+
 body {
   margin: 0;
   font-family: 'Bitter', serif;
@@ -104,6 +119,11 @@ header {
     text-transform: lowercase;
     font-family: 'Bai Jamjuree', sans-serif;
   }
+
+  p {
+    font-size: 20px;
+    line-height: 1.5;
+  }
   
   .projects-header-container {
     display: flex;
@@ -120,6 +140,8 @@ header {
   .projects-list {
     display: flex;
   }
+
+  /* ----- PROJECT ITEMS ----- */
   
   .project-item {
     flex: 1;
@@ -141,6 +163,19 @@ header {
     font-weight: bold;
     margin-bottom: 10px;
   }
+
+    .project-item h3::after {
+      content: "";
+      display: block;
+      width: 50%;
+      /* Adjust width of the line */
+      height: 2px;
+      /* Adjust thickness of the line */
+      background-color: black;
+      /* Line color */
+      margin: 0.5rem auto;
+      margin-top: 2rem;
+    }
   
   .project-item p {
     font-size: 16px;
@@ -153,6 +188,54 @@ header {
     border-right: 1px solid #000;
     background-color: rgba(33,183,144,0.2); /* Green background for highlighted project */
   }
+
+  /* ----- STORY ITEMS ----- */
+
+  .story-item {
+    flex: 1;
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    padding: 20px;
+    font-family: 'Bitter';
+    aspect-ratio: 1 / 1; /* Ensures a 1:1 width-to-height ratio */
+    display: flex;
+    flex-direction: column; /* Keep text and content aligned */
+    justify-content: center;
+    align-items: center;
+    text-align: center; /* Center-align text */
+  }
+  
+  .story-item h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .story-item p {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .story-item:hover {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    background-color: rgba(76, 149, 246,0.2); /* Blue highlight */
+  }
+
+  /* ----- ABOUT ITEMS ----- */
+
+  .about-p-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-top: #000 1px solid;
+  }
+
+  /* ----- FOOTER ----- */
 
   .site-footer {
     display: flex;

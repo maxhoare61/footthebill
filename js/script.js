@@ -60,7 +60,7 @@ var canvas = d3.select("#network"),
   width = canvas.attr("width"),
   height = canvas.attr("height"),
   ctx = canvas.node().getContext("2d"),
-  r = 15,
+  r = 25,
   simulation = d3.forceSimulation()
     .force("x", d3.forceX(width / 2))
     .force("y", d3.forceY(height / 2))
@@ -80,7 +80,7 @@ var canvas = d3.select("#network"),
     // Adjust resolution
 adjustCanvasResolution();
 
-var radius = 350; // Set the desired radius from the central node
+var radius = 100; // Set the desired radius from the central node
 var angleStep = (2 * Math.PI) / (graph.nodes.length - 1); // Calculate the angle step
 
 // Set initial positions of nodes
@@ -319,7 +319,9 @@ canvas
 const targetText = "downstream project"; // Final text to display
 const animatedText = document.getElementById("animated-text");
 const binaryChars = ["0", "1"];
-let currentText = targetText.replace(/./g, () => binaryChars[Math.floor(Math.random() * 2)]); // Start with random binary
+let currentText = targetText.replace(/./g, (char) => {
+  return char === ' ' ? ' ' : (char === '\n' ? '\n' : binaryChars[Math.floor(Math.random() * 2)]);
+});
 
 animatedText.innerHTML = formatText(currentText); // Set initial binary text
 
@@ -329,9 +331,11 @@ function formatText(text) {
     .split("")
     .map((char, i) => {
       if (char === " " || targetText[i] !== char) {
-        return `<span style="font-family: 'Courier New', Courier, monospace;">${char}</span>`;
+        return `<span style="font-family: 'Courier New', Courier, monospace; line-height: 1;">${char}</span>`;
+      } else if (char === '\n') {
+        return '<br>'; // Handle line breaks
       } else {
-        return `<span style="font-family: 'Bai Jamjuree', sans-serif;">${char}</span>`;
+        return `<span style="font-family: 'Bai Jamjuree', sans-serif; line-height: 1;">${char}</span>`;
       }
     })
     .join("");
@@ -363,8 +367,8 @@ function finalReveal() {
 
 // Main animation function
 function animateText() {
-  const duration = 750; // Total animation duration in milliseconds
-  const stepTime = 80; // Time per binary oscillation step
+  const duration = 700; // Total animation duration in milliseconds
+  const stepTime = 150; // Time per binary oscillation step
   let elapsed = 0;
 
   const interval = setInterval(() => {
@@ -380,3 +384,14 @@ function animateText() {
 
 // Trigger the animation on page load
 window.onload = animateText;
+
+// ------------------ HERO SECTION CODE ------------------
+
+document.addEventListener("DOMContentLoaded", function() {
+  const rightSection = document.querySelector(".landing-hero .right");
+  const overlayParagraph = rightSection.querySelector("p");
+
+  rightSection.addEventListener("mouseenter", function() {
+    overlayParagraph.classList.add("hidden");
+  });
+});
