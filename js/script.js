@@ -1,7 +1,7 @@
 var initialNodes = [
   { name: "Central", shape: "circle", color: "#000" },
   { name: "Projects", shape: "circle", color: "#26b790" },
-  { name: "Stories", shape: "triangle", color: "#26b790" },
+  { name: "Stories", shape: "triangle", color: "#4c95f6" },
   { name: "About", shape: "square", color: "#ff8200" }
 ];
 
@@ -17,13 +17,13 @@ var allNodes = [
   { name: "Stories", shape: "triangle", color: "#26b790" },
   { name: "About", shape: "square", color: "#ff8200" },
 
-  { name: "Dirty Donations", shape: "circle", color: "#26b790" },
-  { name: "Emissions in Perspective", shape: "triangle", color: "#26b790" },
-  { name: "Carbon Con", shape: "circle", color: "#26b790" },
-  { name: "Political Donations", shape: "triangle", color: "#4c95f6" },
-  { name: "Data Transparency", shape: "square", color: "#ff8200" },
-  { name: "What is Downstream?", shape: "square", color: "#ff8200" },
-  { name: "Documentation", shape: "triangle", color: "#26b790" }
+  { name: "Dirty Donations", shape: "pentagon", color: "#26b790" },
+  { name: "Emissions in Perspective", shape: "hexagon", color: "#26b790" },
+  { name: "Carbon Con", shape: "pentagon", color: "#26b790" },
+  { name: "Political Donations", shape: "hexagon", color: "#4c95f6" },
+  { name: "Data Transparency", shape: "pentagon", color: "#ff8200" },
+  { name: "What is Downstream?", shape: "hexagon", color: "#ff8200" },
+  { name: "Documentation", shape: "pentagon", color: "#26b790" }
 ];
 
 var allLinks = [
@@ -60,14 +60,13 @@ var canvas = d3.select("#network"),
   width = canvas.attr("width"),
   height = canvas.attr("height"),
   ctx = canvas.node().getContext("2d"),
-  r = 25,
+  r = 20; // Node radius,
   simulation = d3.forceSimulation()
     .force("x", d3.forceX(width / 2))
     .force("y", d3.forceY(height / 2))
     .force("collide", d3.forceCollide(r + 5))
-    .force("charge", d3.forceManyBody().strength(-1500))
+    .force("charge", d3.forceManyBody().strength(-3000))
     .force("link", d3.forceLink().id((d) => d.name))
-    .force("center", d3.forceCenter(width / 2, height / 2))
     .force("bounding-box", () => {
     // Constrain nodes within the container
     graph.nodes.forEach((node) => {
@@ -111,7 +110,20 @@ canvas
   );
 
 let hoveredNode = null; // Track the currently hovered node
-let openedNodes = new Set(); // Track nodes that have been opened
+
+// Array to track the opened state of specific nodes
+let nodeOpenedState = {
+  'Projects': false,
+  'Stories': false,
+  'About': false
+};
+
+// Array to track the opened state of specific nodes
+let nodeOpenedAlready = {
+  'Projects': false,
+  'Stories': false,
+  'About': false
+};
 
 // Update function to render the graph
 function update() {
@@ -159,9 +171,11 @@ function drawNode(d) {
 
   // Set the fill color
   if (d.name === "Central") {
-    ctx.fillStyle = "#000"; // Central node is always black
+    ctx.fillStyle = "#9995eb"; // Central node is always black
   } else if (d === hoveredNode) {
     ctx.fillStyle = d.color; // Hovered node's original color
+  } else if (nodeOpenedState[d.name]) {
+    ctx.fillStyle = d.color; // Opened node's original color
   } else {
     ctx.fillStyle = "#fff"; // White by default
   }
@@ -178,6 +192,21 @@ function drawNode(d) {
     ctx.moveTo(d.x, d.y - r);
     ctx.lineTo(d.x - r, d.y + r);
     ctx.lineTo(d.x + r, d.y + r);
+    ctx.closePath();
+  } else if (d.shape === "hexagon") {
+    drawPolygon(d.x, d.y, r, 6);
+  } else if (d.shape === "pentagon") {
+    drawPolygon(d.x, d.y, r, 5);
+  }
+
+  // Function to draw a polygon with a given number of sides
+  function drawPolygon(x, y, radius, sides) {
+    const angleStep = (2 * Math.PI) / sides;
+    ctx.moveTo(x + radius * Math.cos(0), y + radius * Math.sin(0));
+
+    for (let i = 1; i <= sides; i++) {
+      ctx.lineTo(x + radius * Math.cos(i * angleStep), y + radius * Math.sin(i * angleStep));
+    }
     ctx.closePath();
   }
 
@@ -255,10 +284,11 @@ canvas.on("mouseleave", function () {
 
 canvas.on("click", function () {
   const [x, y] = d3.mouse(this); // Get mouse position
-  const clickedNode = simulation.find(x, y, r * 2); // Find the clicked node
+  const clickedNode = simulation.find(x, y, r * 3); // Find the clicked node
 
   if (clickedNode && ["Projects", "Stories", "About"].includes(clickedNode.name)) {
-    expandNode(clickedNode.name);
+    expandNode(clickedNode.name); // Expand the clicked node
+    update(); // Redraw the graph
   }
 });
 
@@ -277,14 +307,47 @@ function positionSubNodes(parentNode, subNodes) {
 function expandNode(nodeName) {
   // Find the parent node
   const parentNode = graph.nodes.find(node => node.name === nodeName);
+  let subNodes = [];
+  let subLinks = [];
 
-  // Find sub-nodes and links for the clicked node
-  const subNodes = allNodes.filter(node => {
-    return allLinks.some(link => link.source === node.name && link.target === nodeName);
-  });
+  if (nodeOpenedState[nodeName] === false) {
+    if (nodeOpenedAlready[nodeName] === false) {
+      // Find sub-nodes and links for the clicked node
+      subLinks = allLinks.filter(link => link.target === nodeName);
+      subNodes = allNodes.filter(node => {
+        return subLinks.some(link => link.source === node.name && link.target == nodeName);
+      });
+      nodeOpenedState[nodeName] = true; // Set the nodeOpened state to true
+      nodeOpenedAlready[nodeName] = true; // Set opened already to true
 
-  const subLinks = allLinks.filter(link => link.target === nodeName);
+    } else if (nodeOpenedAlready[nodeName] === true) {
+      
+      // Find sub-nodes and links for the clicked node
+      subLinks = allLinks.filter(link => link.target.name === nodeName);
+      subNodes = allNodes.filter(node => {
+        return subLinks.some(link => link.source.name === node.name && link.target.name == nodeName);
+      });
+      nodeOpenedState[nodeName] = true; // Set the nodeOpened state to true
+    }
+  } else {
+    // Remove sub-nodes and links of the previously opened node
+    prevSubLinks = allLinks.filter(link => link.target.name === nodeName);
+    console.log(allLinks);
+    console.log('prev sublinks:', prevSubLinks);
+    prevSubNodes = allNodes.filter(node => {
+      return prevSubLinks.some(link => link.source.name === node.name);
+    });
+    console.log('prev subnodes:', prevSubNodes);
 
+    // Remove sub-nodes and links from the graph
+    graph.nodes = graph.nodes.filter(node => !prevSubNodes.includes(node));
+    graph.links = graph.links.filter(link => !prevSubLinks.includes(link));
+    nodeOpenedState[nodeName] = false; // Set the nodeOpened state to false
+  }
+
+  console.log('already opened:', nodeOpenedAlready);
+  console.log('opened now:', nodeOpenedState);
+  
   // Position the sub-nodes around the parent node
   positionSubNodes(parentNode, subNodes);
 
@@ -295,13 +358,13 @@ function expandNode(nodeName) {
   // Restart the simulation with updated nodes and links
   simulation.nodes(graph.nodes);
   simulation.force("link").links(graph.links);
-  simulation.alpha(1).restart();
+  simulation.alpha(0.8).restart();
 }
 
 // Initialize the simulation with graph data
 simulation.nodes(graph.nodes);
 simulation.force("link").links(graph.links);
-simulation.on("tick", update);
+simulation.alpha(0.8).on("tick", update);
 
 // Add drag functionality
 canvas
@@ -314,10 +377,11 @@ canvas
       .on("end", dragended)
   );
 
+
 // ------------------ BINARY ANIMATION CODE ------------------
 
-const targetText = "downstream project"; // Final text to display
 const animatedText = document.getElementById("animated-text");
+const targetText = animatedText.textContent.trim(); // Get the text content from the HTML element
 const binaryChars = ["0", "1"];
 let currentText = targetText.replace(/./g, (char) => {
   return char === ' ' ? ' ' : (char === '\n' ? '\n' : binaryChars[Math.floor(Math.random() * 2)]);
@@ -388,10 +452,17 @@ window.onload = animateText;
 // ------------------ HERO SECTION CODE ------------------
 
 document.addEventListener("DOMContentLoaded", function() {
-  const rightSection = document.querySelector(".landing-hero .right");
-  const overlayParagraph = rightSection.querySelector("p");
+  const rightSection = document.querySelector(".hero-half.right");
+  const messages = rightSection.querySelectorAll("p");
+  let clickCount = 0;
 
-  rightSection.addEventListener("mouseenter", function() {
-    overlayParagraph.classList.add("hidden");
+  rightSection.addEventListener("click", function() {
+    if (clickCount < messages.length) {
+        messages[clickCount].classList.add("hidden");
+        clickCount++;
+        messages[clickCount].classList.remove("hidden");
+        console.log(clickCount);
+        console.log(messages);
+    }
   });
 });
