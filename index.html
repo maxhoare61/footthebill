@@ -33,7 +33,7 @@
 
     <main>
         <section class="landing-hero">
-            <section class="hero-half left">
+            <section class="hero-half left-dp">
                 <div class="animated-text-container">
                 <h1 id="animated-text">downstream <br>project</h1>
                 </div>
@@ -43,7 +43,10 @@
 
             <section class="hero-half right">
                 <div class="node-map">
-                    <canvas id="network" width="720" height="702"></canvas>
+                    <div class = "gradient-bound-1"></div>
+                    <div class = "gradient-bound-2"></div>
+                    <div class = "gradient-bound-3"></div>
+                    <canvas id="network" width="1740" height="650"></canvas>
                 </div>
                 <p class = "msg-1">Open a topic by clicking on its shape...</p>
                 <p class = "msg-2 hidden">Open more topics or move the graph with the mouse...</p>
@@ -54,21 +57,23 @@
             <section class="the-problem">
                 <section class="hero-half left">
                     <div class="problem-text-container">
-                        <h2>The Problem </h2>
-                        <p>Public data isn’t always publicly accessible. Key insights from government 
-                            data are often scattered across PDFs, spreadsheets, and fragmented databases. 
-                            While technically publicly available, understanding it requires expertise, and a <em>lot of
-                                time.</em>
+                        <h2 class="hidden-obs">The Problem</h2>
+                        <p class="hidden-obs">Public data isn’t always publicly accessible. Key insights from government 
+                            data are often scattered across spreadsheets and fragmented databases. 
+                            While technically publicly available, understanding requires expertise, and a <em>lot of
+                            time. </em> Since this data helps voters decide on important issues, this is bad for our democracy.
                         </p>
                     </div>
                 </section>
-                <section class="hero-half right"></section>
+                <section class="hero-half right">
+                    <svg class="scroll-sim-1" width="800" height="500"></svg>
+                </section>
             </section>
             <section class="our-approach">
                 <section class="hero-half left">
                     <div class="problem-text-container">
-                        <h2>our Approach </h2>
-                        <p>At Downstream, we believe public data should be truly public.
+                        <h2 class="hidden-obs">Our Approach </h2>
+                        <p class="hidden-obs">At Downstream, we believe public data should be truly public.
                             We transform dense datasets into clear, interactive visuals and scrollable narratives.
                             We handle the data cleaning, analysis, and visualisations - you explore the insights.
                         </p>
@@ -79,13 +84,13 @@
             </section>
             <section class="current-projects">
                     <div class="current-projects-text-container">
-                        <h2>Current Projects </h2>
-                        <p>We're starting small but focusing on what matters — making carbon <br> 
+                        <h2 class="hidden-obs">Current Projects </h2>
+                        <p class="hidden-obs">We're starting small but focusing on what matters — making carbon <br> 
                             emissions and political donation data accessible to everyone through <br> 
                             interactive storytelling. These are the stories we care about, and we believe <br> 
                             you should be able to understand them too.
                         </p>
-                        <button class="btn-1">Go To Projects</button>
+                        <a href="projects.html" class="btn-1">Go to projects</a>
                     </div>
             </section>
         </section>
@@ -97,12 +102,12 @@
             <span>downstream project</span>
         </div>
         <div class="footer-content">
-            <p>&copy; 2025 Downstream Project. XXXXXXXXXX.</p>
+            <p>2025 Downstream Project.</p>
             <p><a href="privacy.html">Newsletter</a> | <a href="terms.html">Support</a></p>
         </div>
     </footer>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src="js/script.js"></script>
+    <script defer src="js/script.js"></script>
 </body>
 
 </html>

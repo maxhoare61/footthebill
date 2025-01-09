@@ -449,7 +449,7 @@ function animateText() {
 // Trigger the animation on page load
 window.onload = animateText;
 
-// ------------------ HERO SECTION CODE ------------------
+// ------------------ NETWORK DIRECTIONS ------------------
 
 document.addEventListener("DOMContentLoaded", function() {
   const rightSection = document.querySelector(".hero-half.right");
@@ -457,12 +457,51 @@ document.addEventListener("DOMContentLoaded", function() {
   let clickCount = 0;
 
   rightSection.addEventListener("click", function() {
-    if (clickCount < messages.length) {
+    if (clickCount < 3) {
         messages[clickCount].classList.add("hidden");
+        if(clickCount < 2){
         clickCount++;
         messages[clickCount].classList.remove("hidden");
-        console.log(clickCount);
-        console.log(messages);
+      }
     }
   });
 });
+
+// ------------------ INTERSECTION OBSERVER ------------------
+
+// Function to start the simulation
+function startSimulation() {
+  simulation.alpha(1).restart();
+}
+
+// Function to stop the simulation
+function stopSimulation() {
+  simulation.stop();
+}
+
+// Existing Intersection Observer to handle visibility changes
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    console.log(entry);
+    if (entry.isIntersecting) {
+      if (entry.target.id === 'network') {
+        startSimulation();
+      } else {
+        entry.target.classList.add('show-obs');
+      }
+    } else {
+      if (entry.target.id === 'network') {
+        stopSimulation();
+        console.log('Simulation stopped');
+      }
+    }
+  });
+});
+
+// Observe the canvas element
+const graphnetsim = document.getElementById("network");
+observer.observe(graphnetsim);
+
+// Observe elements with the class 'hidden-obs'
+const hiddenElements = document.querySelectorAll('.hidden-obs');
+hiddenElements.forEach((el) => observer.observe(el));

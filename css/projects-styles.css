@@ -189,6 +189,50 @@ header {
     background-color: rgba(33,183,144,0.2); /* Green background for highlighted project */
   }
 
+  /* ----- CAROUSEL TEXT ----- */
+
+    /* Container for the carousel */
+    .carousel-container {
+      width: 100%;
+      /* Full-width container */
+      overflow: hidden;
+      /* Hide text that goes out of bounds */
+      white-space: nowrap;
+      /* Prevent text from wrapping */
+      position: relative;
+      background: #f0f0f0;
+      /* Optional background color */
+      height: 50px;
+      /* Adjust height as needed */
+      line-height: 50px;
+      /* Vertically center the text */
+    }
+  
+    /* Scrolling text */
+    .carousel-text {
+      display: inline-block;
+      /* Make it scroll horizontally */
+      padding-left: 100%;
+      /* Start the text off-screen */
+      animation: scrollText 10s linear infinite;
+      /* Animation */
+      font-size: 1.5rem;
+      /* Adjust font size as needed */
+    }
+  
+    /* Animation for scrolling */
+    @keyframes scrollText {
+      0% {
+        transform: translateX(100%);
+        /* Start off the screen */
+      }
+  
+      100% {
+        transform: translateX(-100%);
+        /* Move completely out of view */
+      }
+    }
+
   /* ----- STORY ITEMS ----- */
 
   .story-item {
@@ -235,49 +279,53 @@ header {
     border-top: #000 1px solid;
   }
 
-  /* ----- FOOTER ----- */
+  /* ----------------- FOOTER ----------------- */
 
-  .site-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100vw;
-    background-color: #fff; /* White background */
-    color: #333; /* Text color */
-    text-align: center;
-    padding: 20px; /* Space inside the footer */
-    font-family: 'Bitter', serif;
-    font-size: 14px;
-  }
-  
-  .site-footer a {
-    color: #2ebf91; /* Green for links */
-    text-decoration: none;
-    margin: 0 5px;
-  }
-  
-  .site-footer a:hover {
-    text-decoration: underline; /* Underline on hover */
-  }
-  
-  .footer-content {
-    max-width: 1200px; /* Limit the footer width */
-    margin: 0 auto; /* Center the content */
-  }
-  
-  .logo-footer {
-    position: relative;
-    left: 30px;
-    display: flex;
-    align-items: center;
-    max-width: 20px; /* Ensure it doesn't overflow */
-    width: auto;
-    gap: 10px;
-  }
-  
-  .logo-footer img {
-    max-height: 55px; /* Constrain the logo height */
-    width: auto; /* Maintain the aspect ratio */
-  }
+.site-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  background-color: #fff; /* White background */
+  color: #333; /* Text color */
+  text-align: center;
+  padding: 20px; /* Space inside the footer */
+  font-family: 'Bitter', serif;
+  font-size: 14px;
+}
+
+.site-footer p {
+  font-size: 14px;
+}
+
+.site-footer a {
+  color: #2ebf91; /* Green for links */
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+.site-footer a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.footer-content {
+  max-width: 1200px; /* Limit the footer width */
+  margin: 0 auto; /* Center the content */
+}
+
+.logo-footer {
+  position: relative;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  max-width: 20px; /* Ensure it doesn't overflow */
+  width: auto;
+  gap: 10px;
+}
+
+.logo-footer img {
+  max-height: 55px; /* Constrain the logo height */
+  width: auto; /* Maintain the aspect ratio */
+}
